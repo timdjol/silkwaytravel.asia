@@ -1,0 +1,27 @@
+/* Theme tweaks on top of main.min.css */
+
+.logo img,
+.logo .custom-logo {
+	max-height: 54px;
+	width: auto;
+	height: auto;
+}
+
+.custom-logo-link {
+	display: inline-block;
+	line-height: 0;
+}
+
+.main-nav a.is-current {
+	color: #015cab;
+	background: rgba(1, 92, 171, 0.08);
+}
+
+body.has-hero .site-header:not(.is-scrolled) .main-nav a.is-current {
+	color: #fff;
+	background: rgba(255, 255, 255, 0.16);
+}
+
+.text-center {
+	text-align: center;
+}

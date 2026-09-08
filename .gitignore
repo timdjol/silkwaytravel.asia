@@ -1,0 +1,44 @@
+# WordPress / local
+wp-config.php
+wp-config-sample.php
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/backup*/
+wp-content/debug.log
+wp-content/ai1wm-backups/
+wp-content/plugins/
+wp-content/mu-plugins/
+wp-content/themes/twentytwenty*/
+wp-content/themes/index.php
+
+# WP core (tracked separately via Composer or fresh install)
+/wp-admin/
+/wp-includes/
+/wp-*.php
+/index.php
+/xmlrpc.php
+/license.txt
+/readme.html
+/.htaccess
+/router.php
+
+# OS / IDE / tooling
+.DS_Store
+.idea/
+.vscode/
+*.log
+*.bak
+node_modules/
+npm-debug.log*
+
+# Local HTML prototype leftovers (if any)
+app/
+node_modules/
+package-lock.json
+
+# Default WP themes
+wp-content/themes/twentytwenty*/
+wp-content/themes/index.php
+wp-content/index.php
+wp-content/languages/
