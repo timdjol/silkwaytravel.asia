@@ -12,8 +12,8 @@ while ( have_posts() ) :
 	<section class="page-hero" style="background-image:url(<?php echo esc_url( $hero ); ?>);">
 		<div class="container">
 			<div class="breadcrumb">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a> ·
-				<a href="<?php echo esc_url( home_url( '/blog/' ) ); ?>">Blog</a> ·
+				<a href="<?php echo esc_url( silkway_home_url() ); ?>"><?php silkway_e( 'Home', 'Главная' ); ?></a> ·
+				<a href="<?php echo esc_url( silkway_page_url( 'blog' ) ); ?>"><?php silkway_e( 'Blog', 'Блог' ); ?></a> ·
 				<span><?php the_title(); ?></span>
 			</div>
 			<h1><?php the_title(); ?></h1>

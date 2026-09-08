@@ -9,11 +9,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SILKWAY_VERSION', '1.0.0' );
+define( 'SILKWAY_VERSION', '1.0.9' );
 
 require_once get_template_directory() . '/inc/setup.php';
 require_once get_template_directory() . '/inc/cpt.php';
 require_once get_template_directory() . '/inc/helpers.php';
+require_once get_template_directory() . '/inc/polylang.php';
 
 add_action( 'wp_enqueue_scripts', function () {
 	$uri = get_template_directory_uri();
@@ -36,6 +37,14 @@ add_action( 'wp_enqueue_scripts', function () {
 		'silkway-scripts',
 		$uri . '/assets/js/scripts.min.js',
 		array(),
+		SILKWAY_VERSION,
+		true
+	);
+
+	wp_enqueue_script(
+		'silkway-theme',
+		$uri . '/assets/js/theme.js',
+		array( 'silkway-scripts' ),
 		SILKWAY_VERSION,
 		true
 	);

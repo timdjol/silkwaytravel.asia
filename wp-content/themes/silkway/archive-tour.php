@@ -10,9 +10,9 @@ $fallbacks = array( 'serv1.jpg', 'serv2.jpg', 'serv3.jpg', 'serv4.jpg', 'partner
 ?>
 <section class="page-hero" style="background-image:url(<?php echo esc_url( silkway_img( 'bg.jpg' ) ); ?>);">
 	<div class="container">
-		<div class="breadcrumb"><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a> · <span>Tours</span></div>
-		<h1>Tours in Kyrgyzstan & Central Asia</h1>
-		<p>Author programs with transparent logistics: lakes, mountains, cultural cities, horse riding and corporate journeys.</p>
+		<div class="breadcrumb"><a href="<?php echo esc_url( silkway_home_url() ); ?>"><?php silkway_e( 'Home', 'Главная' ); ?></a> · <span><?php silkway_e( 'Tours', 'Туры' ); ?></span></div>
+		<h1><?php silkway_e( 'Tours in Kyrgyzstan & Central Asia', 'Туры по Кыргызстану и Центральной Азии' ); ?></h1>
+		<p><?php silkway_e( 'Author programs with transparent logistics: lakes, mountains, cultural cities, horse riding and corporate journeys.', 'Авторские программы с прозрачной логистикой: озёра, горы, культурные города, конные и корпоративные поездки.' ); ?></p>
 	</div>
 </section>
 
@@ -34,51 +34,51 @@ $fallbacks = array( 'serv1.jpg', 'serv2.jpg', 'serv3.jpg', 'serv4.jpg', 'partner
 			endif;
 			?>
 			<div class="col-lg-4 col-md-6" data-aos="fade-up">
-				<a class="tour-card" href="<?php echo esc_url( home_url( '/corporate-tours/' ) ); ?>">
+				<a class="tour-card" href="<?php echo esc_url( silkway_page_url( 'corporate-tours' ) ); ?>">
 					<div class="tour-card__media" style="background-image:url(<?php echo esc_url( silkway_img( 'bg.jpg' ) ); ?>);">
-						<span class="tour-card__badge">Custom</span>
+						<span class="tour-card__badge"><?php silkway_e( 'Custom', 'Под заказ' ); ?></span>
 					</div>
 					<div class="tour-card__body">
-						<h3>Corporate Tours</h3>
-						<p>Team trips, incentives and business travel with tailored pacing.</p>
-						<div class="tour-card__meta"><span class="tour-card__price">on request</span><span class="tour-card__more">Details →</span></div>
+						<h3><?php silkway_e( 'Corporate Tours', 'Корпоративные туры' ); ?></h3>
+						<p><?php silkway_e( 'Team trips, incentives and business travel with tailored pacing.', 'Командные поездки, incentive и бизнес-туры с удобным темпом.' ); ?></p>
+						<div class="tour-card__meta"><span class="tour-card__price"><?php silkway_e( 'on request', 'по запросу' ); ?></span><span class="tour-card__more"><?php silkway_e( 'Details →', 'Подробнее →' ); ?></span></div>
 					</div>
 				</a>
 			</div>
 		</div>
 
 		<div class="content-block" style="margin-top:50px;" data-aos="fade-up">
-			<h2>Important information</h2>
+			<h2><?php silkway_e( 'Important information', 'Важная информация' ); ?></h2>
 			<div class="faq">
-				<button class="accordion is-open" type="button">What is usually included</button>
+				<button class="accordion is-open" type="button"><?php silkway_e( 'What is usually included', 'Что обычно включено' ); ?></button>
 				<div class="accordion-content" style="max-height:220px;">
 					<ul>
-						<li>Airport meet & greet / transfers according to the program</li>
-						<li>Transportation along the route</li>
-						<li>Accommodation as per itinerary</li>
-						<li>Breakfasts and English/Russian speaking guide</li>
+						<li><?php silkway_e( 'Airport meet & greet / transfers according to the program', 'Встреча в аэропорту / трансферы по программе' ); ?></li>
+						<li><?php silkway_e( 'Transportation along the route', 'Транспорт по маршруту' ); ?></li>
+						<li><?php silkway_e( 'Accommodation as per itinerary', 'Проживание по программе' ); ?></li>
+						<li><?php silkway_e( 'Breakfasts and English/Russian speaking guide', 'Завтраки и гид с английским/русским языком' ); ?></li>
 					</ul>
 				</div>
-				<button class="accordion" type="button">What is usually not included</button>
+				<button class="accordion" type="button"><?php silkway_e( 'What is usually not included', 'Что обычно не включено' ); ?></button>
 				<div class="accordion-content">
 					<ul>
-						<li>International flights</li>
-						<li>Lunches and dinners (unless stated)</li>
-						<li>Travel insurance</li>
-						<li>Personal expenses and optional activities</li>
+						<li><?php silkway_e( 'International flights', 'Международные авиаперелёты' ); ?></li>
+						<li><?php silkway_e( 'Lunches and dinners (unless stated)', 'Обеды и ужины (если не указано иное)' ); ?></li>
+						<li><?php silkway_e( 'Travel insurance', 'Страховка' ); ?></li>
+						<li><?php silkway_e( 'Personal expenses and optional activities', 'Личные расходы и дополнительные активности' ); ?></li>
 					</ul>
 				</div>
-				<button class="accordion" type="button">Do I need a visa for Kyrgyzstan?</button>
+				<button class="accordion" type="button"><?php silkway_e( 'Do I need a visa for Kyrgyzstan?', 'Нужна ли виза в Кыргызстан?' ); ?></button>
 				<div class="accordion-content">
-					<p>Citizens of many countries can visit Kyrgyzstan visa-free for a limited period. We confirm requirements for your nationality before booking.</p>
+					<p><?php silkway_e( 'Citizens of many countries can visit Kyrgyzstan visa-free for a limited period. We confirm requirements for your nationality before booking.', 'Граждане многих стран могут посещать Кыргызстан без визы на ограниченный срок. Мы уточняем требования для вашей страны перед бронированием.' ); ?></p>
 				</div>
 			</div>
 		</div>
 
 		<div class="cta-banner" data-aos="fade-up">
-			<h2>Need a custom route?</h2>
-			<p>Tell us your dates, group size and interests — we will prepare options within one business day.</p>
-			<a class="btn btn-light" href="#enquiry">Send enquiry</a>
+			<h2><?php silkway_e( 'Need a custom route?', 'Нужен индивидуальный маршрут?' ); ?></h2>
+			<p><?php silkway_e( 'Tell us your dates, group size and interests — we will prepare options within one business day.', 'Напишите даты, размер группы и интересы — подготовим варианты в течение одного рабочего дня.' ); ?></p>
+			<a class="btn btn-light" href="#enquiry"><?php silkway_e( 'Send enquiry', 'Оставить заявку' ); ?></a>
 		</div>
 	</div>
 </section>

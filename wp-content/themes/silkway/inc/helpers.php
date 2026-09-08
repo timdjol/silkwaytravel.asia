@@ -39,7 +39,7 @@ function silkway_email() {
 }
 
 function silkway_address() {
-	return '91 Chyngyz Aitmatov street, Bishkek, Kyrgyzstan';
+	return silkway__( '91 Chyngyz Aitmatov street, Bishkek, Kyrgyzstan', 'ул. Чынгыза Айтматова 91, Бишкек, Кыргызстан' );
 }
 
 function silkway_render_stars( $rating = 5 ) {

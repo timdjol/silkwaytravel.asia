@@ -8,16 +8,19 @@ get_header();
 ?>
 <section class="page-hero" style="background-image:url(<?php echo esc_url( silkway_img( 'serv3.jpg' ) ); ?>);">
 	<div class="container">
-		<div class="breadcrumb"><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a> · <span>Blog</span></div>
-		<h1>Blog</h1>
-		<p>Routes, seasons, packing tips and stories from the road across Kyrgyzstan and Central Asia.</p>
+		<div class="breadcrumb">
+			<a href="<?php echo esc_url( silkway_home_url() ); ?>"><?php silkway_e( 'Home', 'Главная' ); ?></a>
+			· <span><?php silkway_e( 'Blog', 'Блог' ); ?></span>
+		</div>
+		<h1><?php silkway_e( 'Blog', 'Блог' ); ?></h1>
+		<p><?php silkway_e( 'Routes, seasons, packing tips and stories from the road across Kyrgyzstan and Central Asia.', 'Маршруты, сезоны, советы по сборам и истории с дороги по Кыргызстану и Центральной Азии.' ); ?></p>
 	</div>
 </section>
 <section class="page-section">
 	<div class="container">
 		<div class="row">
 			<?php
-			$i = 0;
+			$i    = 0;
 			$imgs = array( 'serv1.jpg', 'serv3.jpg', 'partner.jpg', 'serv2.jpg', 'serv4.jpg', 'bg.jpg' );
 			if ( have_posts() ) :
 				while ( have_posts() ) :

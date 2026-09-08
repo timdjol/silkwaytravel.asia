@@ -7,14 +7,14 @@
 	<meta name="theme-color" content="#015cab">
 	<?php wp_head(); ?>
 </head>
-<body <?php body_class( is_front_page() ? 'has-hero' : '' ); ?>>
+<body <?php body_class( 'has-hero' ); ?>>
 <?php wp_body_open(); ?>
 
 <header class="site-header" data-header>
 	<div class="header-top">
 		<div class="container">
 			<div class="header-top__row">
-				<a class="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+				<a class="logo" href="<?php echo esc_url( silkway_home_url() ); ?>">
 					<?php if ( has_custom_logo() ) : ?>
 						<?php the_custom_logo(); ?>
 					<?php else : ?>
@@ -28,11 +28,8 @@
 						<a href="https://wa.me/996772020222" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
 						<a href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram">TG</a>
 					</div>
-					<div class="lang-switch">
-						<a class="is-active" href="<?php echo esc_url( home_url( '/' ) ); ?>">EN</a>
-						<a href="#">RU</a>
-					</div>
-					<button class="toggle-mnu d-lg-none" type="button" aria-label="Menu"><span></span></button>
+					<?php silkway_language_switcher(); ?>
+					<button class="toggle-mnu d-lg-none" type="button" aria-label="<?php echo esc_attr( silkway__( 'Menu', 'Меню' ) ); ?>"><span></span></button>
 				</div>
 			</div>
 		</div>
@@ -42,7 +39,7 @@
 			<nav class="main-nav" data-nav>
 				<ul>
 					<li class="has-dropdown">
-						<a href="<?php echo esc_url( get_post_type_archive_link( 'tour' ) ); ?>">Tours</a>
+						<a href="<?php echo esc_url( get_post_type_archive_link( 'tour' ) ); ?>"><?php silkway_e( 'Tours', 'Туры' ); ?></a>
 						<ul class="dropdown">
 							<?php
 							$tour_q = new WP_Query( array(
@@ -50,6 +47,7 @@
 								'posts_per_page' => 8,
 								'orderby'        => 'menu_order title',
 								'order'          => 'ASC',
+								'lang'           => silkway_lang(),
 							) );
 							if ( $tour_q->have_posts() ) :
 								while ( $tour_q->have_posts() ) :
@@ -61,15 +59,15 @@
 								wp_reset_postdata();
 							endif;
 							?>
-							<li><a href="<?php echo esc_url( home_url( '/corporate-tours/' ) ); ?>">Corporate Tours</a></li>
+							<li><a href="<?php echo esc_url( silkway_page_url( 'corporate-tours' ) ); ?>"><?php silkway_e( 'Corporate Tours', 'Корпоративные туры' ); ?></a></li>
 						</ul>
 					</li>
-					<li><a href="<?php echo esc_url( home_url( '/about/' ) ); ?>">About</a></li>
-					<li><a href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ?: home_url( '/blog/' ) ); ?>">Blog</a></li>
-					<li><a href="<?php echo esc_url( get_post_type_archive_link( 'review' ) ); ?>">Reviews</a></li>
-					<li><a href="<?php echo esc_url( home_url( '/gallery/' ) ); ?>">Gallery</a></li>
-					<li><a href="<?php echo esc_url( home_url( '/services/' ) ); ?>">Services</a></li>
-					<li class="nav-cta"><a class="btn btn-accent" href="#enquiry">Send enquiry</a></li>
+					<li><a href="<?php echo esc_url( silkway_page_url( 'about' ) ); ?>"><?php silkway_e( 'About', 'О нас' ); ?></a></li>
+					<li><a href="<?php echo esc_url( silkway_page_url( 'blog' ) ); ?>"><?php silkway_e( 'Blog', 'Блог' ); ?></a></li>
+					<li><a href="<?php echo esc_url( get_post_type_archive_link( 'review' ) ); ?>"><?php silkway_e( 'Reviews', 'Отзывы' ); ?></a></li>
+					<li><a href="<?php echo esc_url( silkway_page_url( 'gallery' ) ); ?>"><?php silkway_e( 'Gallery', 'Галерея' ); ?></a></li>
+					<li><a href="<?php echo esc_url( silkway_page_url( 'services' ) ); ?>"><?php silkway_e( 'Services', 'Услуги' ); ?></a></li>
+					<li class="nav-cta"><a class="btn btn-accent" href="#enquiry"><?php silkway_e( 'Send enquiry', 'Оставить заявку' ); ?></a></li>
 				</ul>
 			</nav>
 		</div>

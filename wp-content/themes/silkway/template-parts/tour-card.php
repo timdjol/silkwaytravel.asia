@@ -23,9 +23,9 @@ $image    = silkway_tour_image_url( get_the_ID(), $fallback );
 		<div class="tour-card__meta">
 			<span class="tour-card__price">
 				<?php if ( $old ) : ?><del><?php echo esc_html( $old ); ?></del><?php endif; ?>
-				<?php echo esc_html( $price ?: 'on request' ); ?>
+				<?php echo esc_html( $price ?: silkway__( 'on request', 'по запросу' ) ); ?>
 			</span>
-			<span class="tour-card__more">Details →</span>
+			<span class="tour-card__more"><?php echo esc_html( silkway__( 'Details →', 'Подробнее →' ) ); ?></span>
 		</div>
 	</div>
 </a>

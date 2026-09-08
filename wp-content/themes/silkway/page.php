@@ -11,7 +11,10 @@ while ( have_posts() ) :
 	?>
 	<section class="page-hero" style="background-image:url(<?php echo esc_url( $hero ); ?>);">
 		<div class="container">
-			<div class="breadcrumb"><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a> · <span><?php the_title(); ?></span></div>
+			<div class="breadcrumb">
+				<a href="<?php echo esc_url( silkway_home_url() ); ?>"><?php silkway_e( 'Home', 'Главная' ); ?></a>
+				· <span><?php the_title(); ?></span>
+			</div>
 			<h1><?php the_title(); ?></h1>
 			<?php if ( has_excerpt() ) : ?><p><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>
 		</div>

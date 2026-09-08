@@ -7,7 +7,9 @@ wp-content/upgrade/
 wp-content/backup*/
 wp-content/debug.log
 wp-content/ai1wm-backups/
-wp-content/plugins/
+wp-content/plugins/*
+!wp-content/plugins/polylang/
+!wp-content/plugins/polylang/**
 wp-content/mu-plugins/
 wp-content/themes/twentytwenty*/
 wp-content/themes/index.php
