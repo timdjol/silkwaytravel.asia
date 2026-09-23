@@ -40,7 +40,7 @@ $why = silkway_is_ru()
 
 <section class="hero">
 	<div class="owl-carousel owl-hero">
-		<div class="hero__slide" style="background-image: url(<?php echo esc_url( silkway_img( 'bg.jpg' ) ); ?>);">
+		<div class="hero__slide" style="background-image: url(<?php echo esc_url( silkway_img_url( 'bg.jpg' ) ); ?>);">
 			<div class="hero__content" data-aos="fade-up">
 				<p class="eyebrow" style="color:#b7e35d;">Silk Way Travel</p>
 				<h1><?php silkway_e( 'Travel for memories across Central Asia', 'Путешествия ради воспоминаний по Центральной Азии' ); ?></h1>
@@ -51,7 +51,7 @@ $why = silkway_is_ru()
 				</div>
 			</div>
 		</div>
-		<div class="hero__slide" style="background-image: url(<?php echo esc_url( silkway_img( 'serv1.jpg' ) ); ?>);">
+		<div class="hero__slide" style="background-image: url(<?php echo esc_url( silkway_img_url( 'serv1.jpg' ) ); ?>);">
 			<div class="hero__content">
 				<p class="eyebrow" style="color:#b7e35d;"><?php silkway_e( 'Issyk-Kul & mountains', 'Иссык-Куль и горы' ); ?></p>
 				<h1><?php silkway_e( 'Kyrgyzstan highlights with comfort and character', 'Главные красоты Кыргызстана — комфортно и по-настоящему' ); ?></h1>
@@ -62,7 +62,7 @@ $why = silkway_is_ru()
 				</div>
 			</div>
 		</div>
-		<div class="hero__slide" style="background-image: url(<?php echo esc_url( silkway_img( 'serv3.jpg' ) ); ?>);">
+		<div class="hero__slide" style="background-image: url(<?php echo esc_url( silkway_img_url( 'serv3.jpg' ) ); ?>);">
 			<div class="hero__content">
 				<p class="eyebrow" style="color:#b7e35d;"><?php silkway_e( 'Adventure & culture', 'Приключения и культура' ); ?></p>
 				<h1><?php silkway_e( 'Horse riding, trekking and Silk Road discoveries', 'Конные туры, треккинг и открытия Шёлкового пути' ); ?></h1>
@@ -111,7 +111,7 @@ $why = silkway_is_ru()
 				<p><?php silkway_e( 'We have been operating since 2016 as part of Silk Way Group, building strong relationships with hotels, guides and DMCs across Central Asia. Whether you need a private itinerary or a corporate trip, we keep logistics clear and experiences authentic.', 'Мы работаем с 2016 года в составе Silk Way Group и выстроили партнёрства с отелями, гидами и DMC по всей Центральной Азии. Для частных и корпоративных поездок обеспечиваем понятную логистику и аутентичный опыт.' ); ?></p>
 				<a class="btn btn-accent" href="<?php echo esc_url( silkway_page_url( 'about' ) ); ?>"><?php silkway_e( 'Learn more', 'Подробнее' ); ?></a>
 			</div>
-			<div class="soft-band__visual" style="background-image:url(<?php echo esc_url( silkway_img( 'bg.jpg' ) ); ?>);"></div>
+			<div class="soft-band__visual" style="background-image:url(<?php echo esc_url( silkway_img_url( 'bg.jpg' ) ); ?>);"></div>
 		</div>
 	</div>
 </section>
@@ -130,6 +130,43 @@ $why = silkway_is_ru()
 						<h5><?php echo esc_html( $item[1] ); ?></h5>
 					</div>
 				</div>
+			<?php endforeach; ?>
+		</div>
+	</div>
+</section>
+
+<section class="team-section" id="team">
+	<div class="container">
+		<div class="section-head" data-aos="fade-up">
+			<p class="eyebrow"><?php silkway_e( 'People', 'Команда' ); ?></p>
+			<h2><?php silkway_e( 'Guides and partners on the ground', 'Гиды и партнёры на месте' ); ?></h2>
+			<p><?php silkway_e( 'Local experts, trusted drivers and hospitality partners across Kyrgyzstan and Central Asia.', 'Местные эксперты, надёжные водители и партнёры по размещению по Кыргызстану и Центральной Азии.' ); ?></p>
+		</div>
+		<div class="team-grid" data-aos="fade-up">
+			<?php
+			$team = silkway_is_ru()
+				? array(
+					array( 'serv1.jpg', 'Айнура', 'Менеджер по турам', 'Маршруты, логистика и персональные правки программы.' ),
+					array( 'serv3.jpg', 'Нурлан', 'Горный гид', 'Конные и треккинговые маршруты с акцентом на безопасность.' ),
+					array( 'serv4.jpg', 'Елена', 'Гостевой сервис', 'Сопровождение групп и корпоративных программ.' ),
+					array( 'partner.jpg', 'Silk Way Group', 'Партнёрская сеть', 'Отели, DMC и транспорт по Центральной Азии.' ),
+				)
+				: array(
+					array( 'serv1.jpg', 'Ainura', 'Tour manager', 'Itineraries, logistics and personal program adjustments.' ),
+					array( 'serv3.jpg', 'Nurlan', 'Mountain guide', 'Horse riding and trekking routes with a safety-first approach.' ),
+					array( 'serv4.jpg', 'Elena', 'Guest relations', 'Support for private groups and corporate programs.' ),
+					array( 'partner.jpg', 'Silk Way Group', 'Partner network', 'Hotels, DMCs and transport across Central Asia.' ),
+				);
+			foreach ( $team as $member ) :
+				?>
+				<article class="team-card">
+					<div class="team-card__media" style="background-image:url(<?php echo esc_url( silkway_img_url( $member[0] ) ); ?>);"></div>
+					<div class="team-card__body">
+						<span class="team-card__role"><?php echo esc_html( $member[2] ); ?></span>
+						<h3><?php echo esc_html( $member[1] ); ?></h3>
+						<p><?php echo esc_html( $member[3] ); ?></p>
+					</div>
+				</article>
 			<?php endforeach; ?>
 		</div>
 	</div>
@@ -159,6 +196,43 @@ $why = silkway_is_ru()
 	</div>
 </section>
 
+<section class="faq-section" id="faq">
+	<div class="container">
+		<div class="section-head" data-aos="fade-up">
+			<p class="eyebrow"><?php silkway_e( 'FAQ', 'Вопросы' ); ?></p>
+			<h2><?php silkway_e( 'Good to know before you go', 'Полезно знать перед поездкой' ); ?></h2>
+		</div>
+		<div class="faq content-block" data-aos="fade-up">
+			<button class="accordion is-open" type="button"><?php silkway_e( 'What is usually included', 'Что обычно включено' ); ?></button>
+			<div class="accordion-content" style="max-height:220px;">
+				<ul>
+					<li><?php silkway_e( 'Airport meet & greet / transfers according to the program', 'Встреча в аэропорту / трансферы по программе' ); ?></li>
+					<li><?php silkway_e( 'Transportation along the route', 'Транспорт по маршруту' ); ?></li>
+					<li><?php silkway_e( 'Accommodation as per itinerary', 'Проживание по программе' ); ?></li>
+					<li><?php silkway_e( 'Breakfasts and English/Russian speaking guide', 'Завтраки и гид с английским/русским языком' ); ?></li>
+				</ul>
+			</div>
+			<button class="accordion" type="button"><?php silkway_e( 'What is usually not included', 'Что обычно не включено' ); ?></button>
+			<div class="accordion-content">
+				<ul>
+					<li><?php silkway_e( 'International flights', 'Международные авиаперелёты' ); ?></li>
+					<li><?php silkway_e( 'Lunches and dinners (unless stated)', 'Обеды и ужины (если не указано иное)' ); ?></li>
+					<li><?php silkway_e( 'Travel insurance', 'Страховка' ); ?></li>
+					<li><?php silkway_e( 'Personal expenses and optional activities', 'Личные расходы и дополнительные активности' ); ?></li>
+				</ul>
+			</div>
+			<button class="accordion" type="button"><?php silkway_e( 'Do I need a visa for Kyrgyzstan?', 'Нужна ли виза в Кыргызстан?' ); ?></button>
+			<div class="accordion-content">
+				<p><?php silkway_e( 'Citizens of many countries can visit Kyrgyzstan visa-free for a limited period. We confirm requirements for your nationality before booking.', 'Граждане многих стран могут посещать Кыргызстан без визы на ограниченный срок. Мы уточняем требования для вашей страны перед бронированием.' ); ?></p>
+			</div>
+			<button class="accordion" type="button"><?php silkway_e( 'How fast do you reply to requests?', 'Как быстро отвечаете на заявки?' ); ?></button>
+			<div class="accordion-content">
+				<p><?php silkway_e( 'We usually reply within one business day via WhatsApp or email with options and next steps.', 'Обычно отвечаем в течение одного рабочего дня в WhatsApp или по email с вариантами и следующими шагами.' ); ?></p>
+			</div>
+		</div>
+	</div>
+</section>
+
 <section class="moments">
 	<div class="container">
 		<div class="section-head" data-aos="fade-up">
@@ -168,11 +242,11 @@ $why = silkway_is_ru()
 		<div class="moments__grid" data-aos="fade-up">
 			<video src="<?php echo esc_url( silkway_img( 'video.mp4' ) ); ?>" loop autoplay muted playsinline></video>
 			<div class="moments__side">
-				<a class="moments__tile" href="<?php echo esc_url( silkway_page_url( 'gallery' ) ); ?>" style="background-image:url(<?php echo esc_url( silkway_img( 'serv1.jpg' ) ); ?>);">
+				<a class="moments__tile" href="<?php echo esc_url( silkway_page_url( 'gallery' ) ); ?>" style="background-image:url(<?php echo esc_url( silkway_img_url( 'serv1.jpg' ) ); ?>);">
 					<span><?php silkway_e( 'Gallery', 'Галерея' ); ?></span>
 					<strong><?php silkway_e( 'Lakes & peaks', 'Озёра и вершины' ); ?></strong>
 				</a>
-				<a class="moments__tile" href="<?php echo esc_url( silkway_page_url( 'gallery' ) ); ?>" style="background-image:url(<?php echo esc_url( silkway_img( 'serv4.jpg' ) ); ?>);">
+				<a class="moments__tile" href="<?php echo esc_url( silkway_page_url( 'gallery' ) ); ?>" style="background-image:url(<?php echo esc_url( silkway_img_url( 'serv4.jpg' ) ); ?>);">
 					<span><?php silkway_e( 'Gallery', 'Галерея' ); ?></span>
 					<strong><?php silkway_e( 'Nomadic trails', 'Кочевые тропы' ); ?></strong>
 				</a>

@@ -18,6 +18,16 @@ while ( have_posts() ) :
 	$program  = silkway_lines( get_post_meta( get_the_ID(), '_tour_program', true ) );
 	$dates    = silkway_lines( get_post_meta( get_the_ID(), '_tour_dates', true ) );
 	$image    = silkway_tour_image_url( get_the_ID(), 'serv1.jpg' );
+	$map      = silkway_tour_map_points( get_the_ID() );
+	$print_url = add_query_arg( 'program', 'print', get_permalink() );
+
+	$related = new WP_Query( array(
+		'post_type'      => 'tour',
+		'posts_per_page' => 3,
+		'post__not_in'   => array( get_the_ID() ),
+		'orderby'        => 'rand',
+		'lang'           => silkway_lang(),
+	) );
 	?>
 	<section class="page-hero" style="background-image:url(<?php echo esc_url( $image ); ?>);">
 		<div class="container">
@@ -37,6 +47,7 @@ while ( have_posts() ) :
 			<div class="btn-group" style="justify-content:flex-start;margin-top:24px;">
 				<a class="btn btn-accent" href="#enquiry"><?php silkway_e( 'Leave a request', 'Оставить заявку' ); ?></a>
 				<a class="btn btn-outline" href="#program"><?php silkway_e( 'Tour program', 'Программа тура' ); ?></a>
+				<a class="btn btn-outline" href="<?php echo esc_url( $print_url ); ?>" target="_blank" rel="noopener"><?php silkway_e( 'Download PDF', 'Скачать PDF' ); ?></a>
 			</div>
 		</div>
 	</section>
@@ -49,7 +60,10 @@ while ( have_posts() ) :
 
 			<?php if ( $program ) : ?>
 				<div class="content-block" data-aos="fade-up">
-					<h2><?php silkway_e( 'Tour program', 'Программа тура' ); ?></h2>
+					<div class="section-head-row">
+						<h2><?php silkway_e( 'Tour program', 'Программа тура' ); ?></h2>
+						<a class="btn btn-accent btn-sm" href="<?php echo esc_url( $print_url ); ?>" target="_blank" rel="noopener"><?php silkway_e( 'Download PDF', 'Скачать PDF' ); ?></a>
+					</div>
 					<?php foreach ( $program as $index => $line ) :
 						$parts = array_map( 'trim', explode( '|', $line, 2 ) );
 						$title = $parts[0] ?? '';
@@ -63,6 +77,13 @@ while ( have_posts() ) :
 							</div>
 						</div>
 					<?php endforeach; ?>
+				</div>
+			<?php endif; ?>
+
+			<?php if ( $map ) : ?>
+				<div class="content-block" data-aos="fade-up">
+					<h2><?php silkway_e( 'Route map', 'Карта маршрута' ); ?></h2>
+					<div id="tour-map" class="tour-map" data-points="<?php echo esc_attr( wp_json_encode( $map ) ); ?>"></div>
 				</div>
 			<?php endif; ?>
 
@@ -113,10 +134,32 @@ while ( have_posts() ) :
 				<h2><?php silkway_e( 'Bright moments', 'Яркие моменты' ); ?></h2>
 				<div class="gallery gallery-grid">
 					<?php foreach ( array( 'serv1.jpg', 'serv2.jpg', 'serv3.jpg', 'serv4.jpg', 'bg.jpg', 'partner.jpg' ) as $img ) : ?>
-						<a href="<?php echo esc_url( silkway_img( $img ) ); ?>" style="background-image:url(<?php echo esc_url( silkway_img( $img ) ); ?>);"></a>
+						<a href="<?php echo esc_url( silkway_img_url( $img ) ); ?>" style="background-image:url(<?php echo esc_url( silkway_img_url( $img ) ); ?>);"></a>
 					<?php endforeach; ?>
 				</div>
 			</div>
+
+			<?php if ( $related->have_posts() ) : ?>
+				<div class="content-block related-tours" data-aos="fade-up">
+					<h2><?php silkway_e( 'Similar tours', 'Похожие туры' ); ?></h2>
+					<div class="row tour-grid">
+						<?php
+						$i = 0;
+						$fallbacks = array( 'serv1.jpg', 'serv2.jpg', 'serv3.jpg', 'serv4.jpg' );
+						while ( $related->have_posts() ) :
+							$related->the_post();
+							?>
+							<div class="col-lg-4 col-md-6">
+								<?php get_template_part( 'template-parts/tour', 'card', array( 'fallback' => $fallbacks[ $i % count( $fallbacks ) ] ) ); ?>
+							</div>
+							<?php
+							$i++;
+						endwhile;
+						wp_reset_postdata();
+						?>
+					</div>
+				</div>
+			<?php endif; ?>
 		</div>
 	</section>
 	<?php

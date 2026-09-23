@@ -75,6 +75,7 @@ function silkway_tour_meta_box( $post ) {
 	<p><label>Not included (one per line)<br><textarea name="tour_excluded" rows="6" class="widefat"><?php echo esc_textarea( $excluded ); ?></textarea></label></p>
 	<p><label>Program (Day title | description per line)<br><textarea name="tour_program" rows="10" class="widefat"><?php echo esc_textarea( $program ); ?></textarea></label></p>
 	<p><label>Dates (Date | Status | Price per line)<br><textarea name="tour_dates" rows="6" class="widefat"><?php echo esc_textarea( $dates ); ?></textarea></label></p>
+	<p><label>Map points (lat,lng|Label per line)<br><textarea name="tour_map_points" rows="5" class="widefat" placeholder="42.8746,74.5698|Bishkek"><?php echo esc_textarea( get_post_meta( $post->ID, '_tour_map_points', true ) ); ?></textarea></label></p>
 	<?php
 }
 
@@ -106,6 +107,7 @@ add_action( 'save_post_tour', function ( $post_id ) {
 		'tour_excluded'   => '_tour_excluded',
 		'tour_program'    => '_tour_program',
 		'tour_dates'      => '_tour_dates',
+		'tour_map_points' => '_tour_map_points',
 	);
 	foreach ( $fields as $key => $meta ) {
 		if ( isset( $_POST[ $key ] ) ) {

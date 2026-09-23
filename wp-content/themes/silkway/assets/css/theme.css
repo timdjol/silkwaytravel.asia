@@ -563,3 +563,261 @@ body.header-compact {
 .reviews-section .btn-accent {
 	box-shadow: 0 10px 24px rgba(1, 92, 171, 0.22);
 }
+
+/* WhatsApp floating button */
+.whatsapp-fab {
+	position: fixed;
+	right: 22px;
+	bottom: 22px;
+	z-index: 1200;
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	min-height: 52px;
+	padding: 10px 18px 10px 12px;
+	border-radius: 999px;
+	background: #25d366;
+	color: #fff !important;
+	text-decoration: none !important;
+	font-family: gilroy-semibold, sans-serif;
+	font-size: 14px;
+	box-shadow: 0 12px 30px rgba(37, 211, 102, 0.35);
+	transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.whatsapp-fab:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 16px 36px rgba(37, 211, 102, 0.45);
+	color: #fff !important;
+}
+
+.whatsapp-fab__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 34px;
+	height: 34px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.22);
+	font-size: 12px;
+	font-weight: 700;
+}
+
+/* Cookie banner */
+.cookie-banner {
+	position: fixed;
+	left: 16px;
+	right: 16px;
+	bottom: 16px;
+	z-index: 1300;
+	display: none;
+}
+
+.cookie-banner.is-visible {
+	display: block;
+}
+
+.cookie-banner__inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 16px 18px;
+	border-radius: 16px;
+	background: rgba(11, 39, 64, 0.96);
+	color: #fff;
+	box-shadow: 0 18px 40px rgba(8, 28, 48, 0.28);
+}
+
+.cookie-banner__inner p {
+	margin: 0;
+	font-size: 14px;
+	line-height: 1.45;
+	color: rgba(255, 255, 255, 0.92);
+}
+
+.cookie-banner__inner a {
+	color: #5bbfd0;
+	text-decoration: underline;
+}
+
+.cookie-banner .btn {
+	flex-shrink: 0;
+	min-height: 40px;
+	padding: 8px 16px;
+}
+
+/* Team */
+.team-section {
+	padding: 90px 0;
+	background: #fff;
+}
+
+.team-grid {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 22px;
+}
+
+.team-card {
+	border-radius: 18px;
+	overflow: hidden;
+	background: #f4f8fb;
+	box-shadow: 0 12px 32px rgba(1, 92, 171, 0.08);
+	height: 100%;
+}
+
+.team-card__media {
+	height: 180px;
+	background-size: cover;
+	background-position: center;
+}
+
+.team-card__body {
+	padding: 18px 18px 22px;
+}
+
+.team-card__role {
+	display: inline-block;
+	margin-bottom: 6px;
+	color: #5bbfd0;
+	font-size: 12px;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	font-family: gilroy-semibold, sans-serif;
+}
+
+.team-card h3 {
+	margin: 0 0 8px;
+	color: #015cab;
+	font-size: 20px;
+}
+
+.team-card p {
+	margin: 0;
+	color: #6b7a88;
+	font-size: 14px;
+}
+
+/* FAQ on home */
+.faq-section {
+	padding: 90px 0;
+	background: #f4f8fb;
+}
+
+.faq-section .faq {
+	max-width: 860px;
+	margin: 0 auto;
+}
+
+/* Tour map + related + PDF helpers */
+.tour-map {
+	height: 380px;
+	border-radius: 18px;
+	overflow: hidden;
+	box-shadow: 0 12px 32px rgba(1, 92, 171, 0.12);
+	background: #e8eef4;
+}
+
+.section-head-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	flex-wrap: wrap;
+	margin-bottom: 18px;
+}
+
+.section-head-row h2 {
+	margin: 0;
+}
+
+.btn-sm {
+	min-height: 38px !important;
+	padding: 6px 14px !important;
+	font-size: 13px !important;
+}
+
+.related-tours {
+	margin-top: 50px;
+}
+
+.related-tours .tour-grid > [class*="col-"] {
+	margin-bottom: 24px;
+}
+
+.admin-bar .whatsapp-fab {
+	bottom: 54px;
+}
+
+.admin-bar .cookie-banner {
+	bottom: 54px;
+}
+
+/* Mobile polish */
+@media (max-width: 991px) {
+	.team-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.tour-map {
+		height: 280px;
+	}
+
+	.whatsapp-fab__text {
+		display: none;
+	}
+
+	.whatsapp-fab {
+		right: 14px;
+		bottom: 14px;
+		padding: 10px;
+		min-height: 54px;
+		min-width: 54px;
+		justify-content: center;
+	}
+
+	.cookie-banner__inner {
+		flex-direction: column;
+		align-items: stretch;
+		text-align: left;
+	}
+
+	.cookie-banner .btn {
+		width: 100%;
+	}
+
+	.enquiry__contacts {
+		gap: 8px;
+	}
+
+	.enquiry__contacts a {
+		font-size: 13px;
+		padding: 7px 12px;
+	}
+
+	.section-head-row {
+		align-items: flex-start;
+	}
+
+	.page-hero .btn-group {
+		flex-wrap: wrap;
+	}
+
+	.page-hero .btn-group .btn {
+		width: auto;
+	}
+}
+
+@media (max-width: 575px) {
+	.team-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.site-header.is-scrolled .lang-switch a {
+		min-width: 28px;
+		padding: 3px 6px;
+	}
+}

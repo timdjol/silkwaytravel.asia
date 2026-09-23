@@ -4,21 +4,23 @@
  *
  * @package silkway
  */
+
+$enquiry_tour = is_singular( 'tour' ) ? get_the_title() : '';
 ?>
-<section class="enquiry" id="enquiry" style="--enquiry-image:url(<?php echo esc_url( silkway_img( 'bg.jpg' ) ); ?>)">
+<section class="enquiry" id="enquiry" style="--enquiry-image:url(<?php echo esc_url( silkway_img_url( 'bg.jpg' ) ); ?>)">
 	<div class="container">
 		<div class="enquiry__grid">
 			<div class="enquiry__intro" data-aos="fade-up">
 				<p class="eyebrow"><?php silkway_e( 'Plan your trip', 'Спланируйте поездку' ); ?></p>
 				<h2><?php silkway_e( 'Leave a request', 'Оставить заявку' ); ?></h2>
-				<p><?php silkway_e( 'Our managers will contact you and help craft the right Central Asia itinerary.', 'Наши менеджеры свяжутся с вами и помогут подобрать маршрут по Центральной Азии.' ); ?></p>
+				<p><?php silkway_e( 'Fill in the form — we will open WhatsApp with your request ready to send.', 'Заполните форму — откроем WhatsApp с готовым текстом заявки.' ); ?></p>
 				<div class="enquiry__contacts">
 					<a href="tel:+996772020222"><?php echo esc_html( silkway_phone() ); ?></a>
 					<a href="mailto:<?php echo esc_attr( silkway_email() ); ?>"><?php echo esc_html( silkway_email() ); ?></a>
-					<a href="https://wa.me/996772020222" target="_blank" rel="noopener">WhatsApp</a>
+					<a href="<?php echo esc_url( silkway_whatsapp_url() ); ?>" target="_blank" rel="noopener">WhatsApp</a>
 				</div>
 			</div>
-			<form class="enquiry__form" action="#" method="post" data-aos="fade-up" data-aos-delay="100">
+			<form class="enquiry__form" action="#" method="post" data-aos="fade-up" data-aos-delay="100"<?php echo $enquiry_tour ? ' data-tour="' . esc_attr( $enquiry_tour ) . '"' : ''; ?>>
 				<div class="form-row">
 					<input type="text" name="name" placeholder="<?php echo esc_attr( silkway__( 'Your name', 'Ваше имя' ) ); ?>" required>
 					<input type="tel" name="phone" placeholder="<?php echo esc_attr( silkway__( 'Phone number', 'Телефон' ) ); ?>" required>
@@ -32,7 +34,7 @@
 					<input type="checkbox" required>
 					<span><?php echo esc_html( silkway__( 'I agree to the processing of personal data according to the', 'Я даю согласие на обработку персональных данных согласно' ) ); ?> <a href="<?php echo esc_url( silkway_page_url( 'privacy-policy' ) ); ?>"><?php silkway_e( 'privacy policy', 'политике конфиденциальности' ); ?></a></span>
 				</label>
-				<button class="btn btn-enquiry" type="submit"><?php silkway_e( 'Send request', 'Отправить' ); ?></button>
+				<button class="btn btn-enquiry" type="submit"><?php silkway_e( 'Send via WhatsApp', 'Отправить в WhatsApp' ); ?></button>
 			</form>
 		</div>
 	</div>
@@ -95,6 +97,20 @@
 		</div>
 	</div>
 </footer>
+
+<a class="whatsapp-fab" href="<?php echo esc_url( silkway_whatsapp_url( silkway__( 'Hello! I would like to plan a trip with Silk Way Travel.', 'Здравствуйте! Хочу спланировать поездку с Silk Way Travel.' ) ) ); ?>" target="_blank" rel="noopener" aria-label="WhatsApp">
+	<span class="whatsapp-fab__icon" aria-hidden="true">WA</span>
+	<span class="whatsapp-fab__text">WhatsApp</span>
+</a>
+
+<div class="cookie-banner" role="dialog" aria-live="polite">
+	<div class="cookie-banner__inner">
+		<p><?php echo esc_html( silkway__( 'We use cookies to improve the site experience. By continuing you agree to our', 'Мы используем cookies для удобства сайта. Продолжая, вы соглашаетесь с' ) ); ?>
+			<a href="<?php echo esc_url( silkway_page_url( 'privacy-policy' ) ); ?>"><?php silkway_e( 'privacy policy', 'политикой конфиденциальности' ); ?></a>.
+		</p>
+		<button type="button" class="btn btn-accent" data-cookie-accept><?php silkway_e( 'Accept', 'Принять' ); ?></button>
+	</div>
+</div>
 
 <?php wp_footer(); ?>
 </body>
