@@ -338,6 +338,32 @@ body.header-compact {
 	grid-template-columns: 1fr 1fr;
 	gap: 12px;
 	margin-bottom: 12px;
+	align-items: start;
+}
+
+.enquiry__form .form-field {
+	position: relative;
+	min-width: 0;
+}
+
+.enquiry__form .field-error {
+	display: block;
+	margin-top: 6px;
+	min-height: 0;
+	font-size: 12px;
+	line-height: 1.35;
+	color: #c0392b;
+}
+
+.enquiry__form .field-error[hidden] {
+	display: none;
+}
+
+.enquiry__form input.is-invalid,
+.enquiry__form input.is-invalid:focus {
+	border-color: #c0392b;
+	background: #fff7f6;
+	box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.16);
 }
 
 .enquiry__form input,
@@ -404,7 +430,7 @@ body.header-compact {
 	background: #6e9a1a;
 	color: #fff;
 	text-decoration: none;
-	transform: translateY(-1px);
+	transform: none;
 }
 
 @media (max-width: 991px) {
@@ -469,7 +495,7 @@ body.header-compact {
 }
 
 .review-card:hover {
-	transform: translateY(-4px);
+	transform: none;
 	box-shadow: 0 22px 48px rgba(1, 92, 171, 0.16);
 }
 
@@ -586,7 +612,7 @@ body.header-compact {
 }
 
 .whatsapp-fab:hover {
-	transform: translateY(-2px);
+	transform: none;
 	box-shadow: 0 16px 36px rgba(37, 211, 102, 0.45);
 	color: #fff !important;
 }
@@ -758,6 +784,64 @@ body.header-compact {
 
 /* Mobile polish */
 @media (max-width: 991px) {
+	html,
+	body {
+		overflow-x: hidden;
+		max-width: 100%;
+	}
+
+	.container {
+		max-width: 100%;
+		padding-left: 16px;
+		padding-right: 16px;
+		box-sizing: border-box;
+	}
+
+	/* Specificity beat for .site-footer .footer-grid (3 cols) */
+	.site-footer .footer-grid {
+		grid-template-columns: 1fr;
+		gap: 28px;
+		padding-bottom: 28px;
+	}
+
+	.site-footer {
+		padding-top: 48px;
+	}
+
+	.site-footer .logo img {
+		max-width: min(220px, 100%);
+		height: auto;
+	}
+
+	.site-footer p,
+	.site-footer li,
+	.site-footer a {
+		overflow-wrap: anywhere;
+		word-break: break-word;
+	}
+
+	.moments__grid {
+		grid-template-columns: 1fr;
+	}
+
+	.moments video {
+		min-height: 220px;
+	}
+
+	.enquiry__form .form-row,
+	.enquiry .form-row {
+		grid-template-columns: 1fr !important;
+	}
+
+	.enquiry__form .agree {
+		align-items: flex-start;
+	}
+
+	.enquiry__form .agree span {
+		overflow-wrap: anywhere;
+		word-break: break-word;
+	}
+
 	.team-grid {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
@@ -771,12 +855,22 @@ body.header-compact {
 	}
 
 	.whatsapp-fab {
-		right: 14px;
-		bottom: 14px;
+		right: max(14px, env(safe-area-inset-right));
+		bottom: max(14px, env(safe-area-inset-bottom));
 		padding: 10px;
 		min-height: 54px;
 		min-width: 54px;
 		justify-content: center;
+	}
+
+	.copy {
+		padding-right: 72px;
+	}
+
+	.cookie-banner {
+		left: 12px;
+		right: 12px;
+		bottom: 78px;
 	}
 
 	.cookie-banner__inner {
@@ -791,6 +885,7 @@ body.header-compact {
 
 	.enquiry__contacts {
 		gap: 8px;
+		flex-wrap: wrap;
 	}
 
 	.enquiry__contacts a {
@@ -809,6 +904,15 @@ body.header-compact {
 	.page-hero .btn-group .btn {
 		width: auto;
 	}
+
+	.owl-carousel .owl-stage-outer {
+		overflow: hidden;
+	}
+
+	.tour-grid > [class*="col-"],
+	.reviews-section .row > [class*="col-"] {
+		min-width: 0;
+	}
 }
 
 @media (max-width: 575px) {
@@ -819,5 +923,524 @@ body.header-compact {
 	.site-header.is-scrolled .lang-switch a {
 		min-width: 28px;
 		padding: 3px 6px;
+	}
+
+	.header-top {
+		gap: 8px;
+	}
+
+	.site-footer .footer-grid {
+		gap: 24px;
+	}
+}
+
+/* Moments tiles: readable label on light photos */
+.moments__tile {
+	color: #fff !important;
+	text-decoration: none;
+	border-bottom: 0;
+	overflow: hidden;
+	transition:
+		transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.moments__tile::before {
+	background: linear-gradient(
+		180deg,
+		rgba(8, 28, 48, 0.78) 0%,
+		rgba(8, 28, 48, 0.42) 42%,
+		rgba(1, 92, 171, 0.55) 100%
+	);
+	opacity: 1;
+	transition: opacity 0.35s ease;
+}
+
+.moments__tile span,
+.moments__tile strong {
+	color: #fff !important;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+	transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.moments__tile span {
+	display: block;
+	font-size: 13px;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	opacity: 0.92;
+	font-family: gilroy-semibold, sans-serif;
+}
+
+.moments__tile:hover,
+.moments__tile:focus-visible {
+	color: #fff !important;
+	transform: none;
+	box-shadow: 0 14px 32px rgba(8, 28, 48, 0.22);
+	text-decoration: none !important;
+}
+
+.moments__tile:hover::before,
+.moments__tile:focus-visible::before {
+	opacity: 0.92;
+}
+
+/* =========================================================
+   Site-wide interactions + readability
+   ========================================================= */
+
+:root {
+	--sw-blue: #015cab;
+	--sw-blue-dark: #014682;
+	--sw-ink: #2c3a47;
+	--sw-muted: #556370;
+	--sw-cyan: #1f9bb3;
+	--sw-lime: #6e9a1a;
+	--sw-ease: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+	--sw-ease-fast: 0.25s ease;
+}
+
+/* Clear focus rings for keyboard users */
+:focus-visible {
+	outline: 3px solid rgba(91, 191, 208, 0.85);
+	outline-offset: 2px;
+}
+
+.btn:focus-visible,
+.whatsapp-fab:focus-visible,
+.moments__tile:focus-visible,
+.tour-card:focus-visible {
+	outline-offset: 3px;
+}
+
+/* Buttons */
+.btn,
+.btn-enquiry,
+.enquiry__form .btn-enquiry,
+.enquiry .btn-enquiry {
+	transition:
+		background-color var(--sw-ease-fast),
+		color var(--sw-ease-fast),
+		border-color var(--sw-ease-fast),
+		box-shadow var(--sw-ease),
+		transform var(--sw-ease);
+}
+
+.btn-accent {
+	color: #fff !important;
+	background: var(--sw-blue);
+	box-shadow: 0 8px 20px rgba(1, 92, 171, 0.14);
+}
+
+.btn-accent:hover,
+.btn-accent:focus-visible {
+	color: #fff !important;
+	background: var(--sw-blue-dark) !important;
+	transform: none;
+	box-shadow: 0 12px 26px rgba(1, 92, 171, 0.22);
+	text-decoration: none;
+}
+
+.btn-outline {
+	color: #fff !important;
+	border-color: rgba(255, 255, 255, 0.92);
+	background: rgba(255, 255, 255, 0.06);
+}
+
+.btn-outline:hover,
+.btn-outline:focus-visible {
+	color: var(--sw-blue) !important;
+	background: #fff !important;
+	border-color: #fff;
+	transform: none;
+	box-shadow: 0 10px 24px rgba(8, 28, 48, 0.18);
+	text-decoration: none;
+}
+
+.btn-light {
+	color: var(--sw-blue) !important;
+	background: #fff;
+	box-shadow: 0 8px 20px rgba(8, 28, 48, 0.1);
+}
+
+.btn-light:hover,
+.btn-light:focus-visible {
+	color: #fff !important;
+	background: var(--sw-blue) !important;
+	transform: none;
+	box-shadow: 0 12px 26px rgba(1, 92, 171, 0.22);
+	text-decoration: none;
+}
+
+.btn-enquiry:hover,
+.btn-enquiry:focus-visible,
+.enquiry__form .btn-enquiry:hover,
+.enquiry .btn-enquiry:hover {
+	transform: none;
+	box-shadow: 0 10px 24px rgba(127, 176, 31, 0.28);
+}
+
+/* Readable secondary text */
+.section-head p,
+.soft-band p,
+.why-item p,
+.blog-card p,
+.service-card p,
+.tour-card p,
+.include-grid .include-card ul li,
+.program-day p,
+.faq .accordion-content p,
+.faq .accordion-content ul,
+.page-section > .container > p,
+.page-section .content-block p,
+.team-card p,
+.review-card__author span {
+	color: var(--sw-muted);
+}
+
+/* CTA on blue gradient — keep light text readable */
+.cta-banner,
+.cta-banner h2,
+.cta-banner p {
+	color: #fff !important;
+}
+
+.cta-banner p {
+	opacity: 0.92;
+}
+
+.eyebrow {
+	color: var(--sw-cyan);
+	font-family: gilroy-semibold, sans-serif;
+}
+
+/* Content / prose links — only real text links, never cards */
+.content-block a:not(.btn),
+.entry-content a:not(.btn),
+.single .content a:not(.btn),
+.accordion-content a,
+.enquiry__form .agree a {
+	color: var(--sw-blue);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+	transition: color var(--sw-ease-fast);
+}
+
+.content-block a:not(.btn):hover,
+.entry-content a:not(.btn):hover,
+.single .content a:not(.btn):hover,
+.accordion-content a:hover,
+.enquiry__form .agree a:hover {
+	color: var(--sw-blue-dark);
+}
+
+/* Header links */
+.main-nav > ul > li > a {
+	text-decoration: none;
+	transition: color var(--sw-ease-fast), background-color var(--sw-ease-fast);
+}
+
+.header-mail,
+.header-phone,
+.messengers a,
+.lang-switch a {
+	text-decoration: none;
+	transition:
+		color var(--sw-ease-fast),
+		background-color var(--sw-ease-fast);
+}
+
+.page-hero .breadcrumb a {
+	text-decoration: none;
+	transition: color var(--sw-ease-fast), opacity var(--sw-ease-fast);
+}
+
+.page-hero .breadcrumb a:hover,
+.page-hero .breadcrumb a:focus-visible {
+	color: #fff;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+/*
+ * Cards / tiles: no transform on hover (no grid/carousel jitter).
+ * Shadow + color only. Never underline card text.
+ */
+.tour-card,
+.service-card,
+.blog-card,
+.team-card,
+.why-item,
+.program-day,
+.include-card,
+.review-card,
+.moments__tile,
+a.tour-card,
+a.moments__tile,
+.page-section a.tour-card,
+.page-section a.moments__tile,
+.tours-section a.tour-card {
+	text-decoration: none !important;
+}
+
+.tour-card,
+.service-card,
+.blog-card,
+.team-card {
+	overflow: hidden;
+}
+
+.tour-card,
+.service-card,
+.blog-card,
+.team-card,
+.why-item,
+.program-day,
+.include-card,
+.review-card {
+	-webkit-transform: none !important;
+	transform: none !important;
+	transition: box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color var(--sw-ease-fast);
+}
+
+.tour-card h3,
+.tour-card p,
+.tour-card__more,
+.tour-card__price,
+.service-card h3,
+.service-card h3 a,
+.blog-card h3,
+.blog-card h3 a,
+.blog-card p,
+.service-card p {
+	text-decoration: none !important;
+	transition: color var(--sw-ease-fast);
+}
+
+.tour-card:hover,
+.tour-card:focus-visible,
+.service-card:hover,
+.blog-card:hover,
+.team-card:hover,
+.why-item:hover,
+.review-card:hover,
+.program-day:hover,
+.include-card:hover {
+	-webkit-transform: none !important;
+	transform: none !important;
+	box-shadow: 0 18px 44px rgba(1, 92, 171, 0.16);
+	text-decoration: none !important;
+	color: var(--sw-ink);
+}
+
+.tour-card:hover h3,
+.tour-card:focus-visible h3,
+.service-card:hover h3 a,
+.blog-card:hover h3 a,
+.service-card h3 a:hover,
+.blog-card h3 a:hover {
+	color: var(--sw-blue-dark);
+	text-decoration: none !important;
+}
+
+.tour-card__more {
+	color: var(--sw-cyan);
+	font-family: gilroy-semibold, sans-serif;
+	display: inline-block;
+	transition: color var(--sw-ease-fast);
+}
+
+.tour-card:hover .tour-card__more,
+.tour-card:focus-visible .tour-card__more {
+	color: var(--sw-blue);
+}
+
+.why-item h5 {
+	color: var(--sw-ink);
+}
+
+/* Gallery — zoom inside tile (no layout shift / grid jank) */
+.gallery-grid a {
+	position: relative;
+	overflow: hidden;
+	isolation: isolate;
+	/* Keep inline background-image for ::before inherit, but don't paint it on the tile */
+	background-size: 0 0 !important;
+	background-repeat: no-repeat;
+	transform: none !important;
+	transition: box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gallery-grid a::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	background-image: inherit;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	transform: scale(1) translateZ(0);
+	transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gallery-grid a::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	background: linear-gradient(180deg, transparent 55%, rgba(8, 28, 48, 0.45));
+	opacity: 0;
+	transition: opacity 0.35s ease;
+	pointer-events: none;
+}
+
+.gallery-grid a:hover,
+.gallery-grid a:focus-visible {
+	-webkit-transform: none !important;
+	transform: none !important;
+	box-shadow: 0 16px 36px rgba(1, 92, 171, 0.2);
+}
+
+.gallery-grid a:hover::before,
+.gallery-grid a:focus-visible::before {
+	transform: scale(1.07) translateZ(0);
+}
+
+.gallery-grid a:hover::after,
+.gallery-grid a:focus-visible::after {
+	opacity: 1;
+}
+
+/* FAQ accordion */
+.faq .accordion {
+	transition:
+		background-color var(--sw-ease-fast),
+		box-shadow var(--sw-ease);
+}
+
+.faq .accordion:hover,
+.faq .accordion:focus-visible {
+	background: var(--sw-blue-dark);
+	box-shadow: 0 8px 20px rgba(1, 92, 171, 0.18);
+}
+
+.faq .accordion-content {
+	color: var(--sw-muted);
+}
+
+.faq .accordion-content p,
+.faq .accordion-content li {
+	color: var(--sw-muted);
+	line-height: 1.6;
+}
+
+/* Footer — color only (no padding shift) */
+.site-footer {
+	color: rgba(255, 255, 255, 0.88);
+}
+
+.site-footer p {
+	color: rgba(255, 255, 255, 0.82);
+	line-height: 1.65;
+}
+
+.site-footer a {
+	color: rgba(255, 255, 255, 0.88);
+	transition: color var(--sw-ease-fast);
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+	color: #7fd4e4;
+	text-decoration: none;
+}
+
+.site-footer .footer-contacts a {
+	color: #fff;
+	font-family: gilroy-semibold, sans-serif;
+}
+
+.site-footer .footer-contacts a:hover {
+	color: #7fd4e4;
+}
+
+.copy p {
+	color: rgba(255, 255, 255, 0.72);
+}
+
+/* Tour hero meta chips */
+.tour-hero-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin: 0 0 20px;
+}
+
+.tour-hero-meta span {
+	display: inline-flex;
+	align-items: center;
+	min-height: 34px;
+	padding: 6px 12px;
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.16);
+	color: #fff;
+	font-size: 13px;
+	font-family: gilroy-semibold, sans-serif;
+	backdrop-filter: blur(6px);
+}
+
+/* Cookie CTA */
+.cookie-banner .btn-accent {
+	transition:
+		background-color var(--sw-ease-fast),
+		color var(--sw-ease-fast),
+		transform var(--sw-ease);
+}
+
+.cookie-banner .btn-accent:hover,
+.cookie-banner .btn-accent:focus-visible {
+	background: #fff !important;
+	color: var(--sw-blue) !important;
+}
+
+/* Owl dots */
+.owl-dots .owl-dot span {
+	transition: background-color var(--sw-ease-fast), transform var(--sw-ease);
+}
+
+.owl-dots .owl-dot:hover span,
+.owl-dots .owl-dot.active span {
+	background: var(--sw-blue) !important;
+	transform: scale(1.08);
+}
+
+.whatsapp-fab {
+	transition:
+		transform var(--sw-ease),
+		box-shadow var(--sw-ease),
+		background-color var(--sw-ease-fast);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+
+	.tour-card:hover,
+	.service-card:hover,
+	.blog-card:hover,
+	.team-card:hover,
+	.why-item:hover,
+	.review-card:hover,
+	.moments__tile:hover,
+	.gallery-grid a:hover,
+	.gallery-grid a:hover::before {
+		transform: none !important;
 	}
 }

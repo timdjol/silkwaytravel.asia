@@ -9,12 +9,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SILKWAY_VERSION', '1.1.0' );
+define( 'SILKWAY_VERSION', '1.2.5' );
 
 require_once get_template_directory() . '/inc/setup.php';
 require_once get_template_directory() . '/inc/cpt.php';
 require_once get_template_directory() . '/inc/helpers.php';
 require_once get_template_directory() . '/inc/polylang.php';
+require_once get_template_directory() . '/inc/roles.php';
 
 add_action( 'wp_enqueue_scripts', function () {
 	$uri = get_template_directory_uri();
@@ -77,6 +78,7 @@ add_action( 'wp_enqueue_scripts', function () {
 				'tour'         => silkway__( 'Tour', 'Тур' ),
 				'name'         => silkway__( 'Name', 'Имя' ),
 				'phone'        => silkway__( 'Phone', 'Телефон' ),
+				'phoneInvalid' => silkway__( 'Enter a valid phone number, e.g. +996 XXX XXX XXX', 'Введите корректный номер, например +996 XXX XXX XXX' ),
 				'guests'       => silkway__( 'Guests', 'Гости' ),
 				'message'      => silkway__( 'Message', 'Сообщение' ),
 			),

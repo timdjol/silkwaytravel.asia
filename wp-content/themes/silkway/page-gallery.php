@@ -18,7 +18,7 @@ get_header();
 </section>
 <section class="page-section">
 	<div class="container">
-		<div class="gallery gallery-grid" data-aos="fade-up">
+		<div class="gallery gallery-grid">
 			<?php foreach ( array( 'bg.jpg', 'serv1.jpg', 'serv2.jpg', 'serv3.jpg', 'serv4.jpg', 'partner.jpg' ) as $img ) : ?>
 				<a href="<?php echo esc_url( silkway_img( $img ) ); ?>" style="background-image:url(<?php echo esc_url( silkway_img( $img ) ); ?>);"></a>
 			<?php endforeach; ?>

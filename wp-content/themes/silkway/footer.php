@@ -20,10 +20,13 @@ $enquiry_tour = is_singular( 'tour' ) ? get_the_title() : '';
 					<a href="<?php echo esc_url( silkway_whatsapp_url() ); ?>" target="_blank" rel="noopener">WhatsApp</a>
 				</div>
 			</div>
-			<form class="enquiry__form" action="#" method="post" data-aos="fade-up" data-aos-delay="100"<?php echo $enquiry_tour ? ' data-tour="' . esc_attr( $enquiry_tour ) . '"' : ''; ?>>
+			<form class="enquiry__form" action="#" method="post" data-aos="fade-up" data-aos-delay="100" novalidate<?php echo $enquiry_tour ? ' data-tour="' . esc_attr( $enquiry_tour ) . '"' : ''; ?>>
 				<div class="form-row">
-					<input type="text" name="name" placeholder="<?php echo esc_attr( silkway__( 'Your name', 'Ваше имя' ) ); ?>" required>
-					<input type="tel" name="phone" placeholder="<?php echo esc_attr( silkway__( 'Phone number', 'Телефон' ) ); ?>" required>
+					<input type="text" name="name" placeholder="<?php echo esc_attr( silkway__( 'Your name', 'Ваше имя' ) ); ?>" required autocomplete="name">
+					<div class="form-field">
+						<input type="tel" name="phone" inputmode="tel" autocomplete="tel" placeholder="<?php echo esc_attr( silkway__( '+996 XXX XXX XXX', '+996 XXX XXX XXX' ) ); ?>" required aria-describedby="enquiry-phone-error">
+						<span class="field-error" id="enquiry-phone-error" role="alert" hidden></span>
+					</div>
 				</div>
 				<div class="form-row">
 					<input type="email" name="email" placeholder="<?php echo esc_attr( silkway__( 'Email', 'Email' ) ); ?>">

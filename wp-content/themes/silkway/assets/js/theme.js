@@ -27,23 +27,91 @@
 		window.open(url, "_blank", "noopener");
 	}
 
+	function digitsOnly(value) {
+		return String(value || "").replace(/\D/g, "");
+	}
+
+	function isValidPhone(value) {
+		var raw = String(value || "").trim();
+		if (!raw) return false;
+		// Allow +, spaces, dashes, parentheses — validate by digit count.
+		if (!/^[+\d][\d\s()\-./]*$/.test(raw)) return false;
+		var digits = digitsOnly(raw);
+		// Local KG without country code (9–10) or international E.164 (10–15).
+		if (digits.length >= 9 && digits.length <= 15) return true;
+		return false;
+	}
+
+	function setPhoneError($input, message) {
+		var $field = $input.closest(".form-field");
+		var $err = $field.find(".field-error");
+		if (!$err.length) {
+			$err = $('<span class="field-error" role="alert"></span>').appendTo($field);
+		}
+		if (message) {
+			$input.addClass("is-invalid").attr("aria-invalid", "true");
+			$err.text(message).prop("hidden", false);
+			try {
+				$input[0].setCustomValidity(message);
+			} catch (err) {}
+		} else {
+			$input.removeClass("is-invalid").attr("aria-invalid", "false");
+			$err.text("").prop("hidden", true);
+			try {
+				$input[0].setCustomValidity("");
+			} catch (err) {}
+		}
+	}
+
 	function bindEnquiryForm() {
-		$(document).off("submit", ".enquiry__form");
-		$(document).on("submit", ".enquiry__form", function (e) {
+		var phoneError =
+			(cfg.i18n && cfg.i18n.phoneInvalid) ||
+			"Enter a valid phone number, e.g. +996 XXX XXX XXX";
+
+		$(document).off("submit.silkwayEnquiry input.silkwayEnquiry blur.silkwayEnquiry", ".enquiry__form");
+		$(document).on("input.silkwayEnquiry blur.silkwayEnquiry", '.enquiry__form [name="phone"]', function () {
+			var $input = $(this);
+			var val = $.trim($input.val() || "");
+			if (!val) {
+				setPhoneError($input, "");
+				return;
+			}
+			setPhoneError($input, isValidPhone(val) ? "" : phoneError);
+		});
+
+		$(document).on("submit.silkwayEnquiry", ".enquiry__form", function (e) {
 			e.preventDefault();
 			e.stopImmediatePropagation();
 			var $form = $(this);
+			var $phone = $form.find('[name="phone"]');
 			var name = $.trim($form.find('[name="name"]').val() || "");
-			var phone = $.trim($form.find('[name="phone"]').val() || "");
+			var phone = $.trim($phone.val() || "");
 			var email = $.trim($form.find('[name="email"]').val() || "");
 			var guests = $.trim($form.find('[name="guests"]').val() || "");
 			var message = $.trim($form.find('[name="message"]').val() || "");
 			var tour = $.trim($form.data("tour") || "");
+			var $agree = $form.find('.agree input[type="checkbox"]');
+
+			if (!name) {
+				$form.find('[name="name"]').trigger("focus");
+				return;
+			}
+			if (!isValidPhone(phone)) {
+				setPhoneError($phone, phoneError);
+				$phone.trigger("focus");
+				return;
+			}
+			setPhoneError($phone, "");
+			if ($agree.length && !$agree.is(":checked")) {
+				$agree.trigger("focus");
+				return;
+			}
+
 			var lines = [];
 			lines.push(cfg.i18n && cfg.i18n.requestTitle ? cfg.i18n.requestTitle : "Silk Way Travel enquiry");
 			if (tour) lines.push((cfg.i18n && cfg.i18n.tour ? cfg.i18n.tour : "Tour") + ": " + tour);
 			if (name) lines.push((cfg.i18n && cfg.i18n.name ? cfg.i18n.name : "Name") + ": " + name);
-			if (phone) lines.push((cfg.i18n && cfg.i18n.phone ? cfg.i18n.phone : "Phone") + ": " + phone);
+			lines.push((cfg.i18n && cfg.i18n.phone ? cfg.i18n.phone : "Phone") + ": " + phone);
 			if (email) lines.push("Email: " + email);
 			if (guests) lines.push((cfg.i18n && cfg.i18n.guests ? cfg.i18n.guests : "Guests") + ": " + guests);
 			if (message) lines.push((cfg.i18n && cfg.i18n.message ? cfg.i18n.message : "Message") + ": " + message);
